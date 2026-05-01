@@ -1,10 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [isMenuOpen]);
 
     const navLinks = [
         {href: '/', label: 'Главная'},
@@ -14,70 +21,67 @@ export default function Header() {
     ];
 
     return (
-        <header className="bg-white border-b border-gray-200 shadow-sm">
-            <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between h-20">
-                    <Link href="/" className="flex items-center space-x-2">
-                        <img src="/logo.svg" alt="logotype" className="h-16 w-auto text-gray-700"/>
+        <header className="bg-white relative z-50">
+            <div className="container mx-auto px-8 max-w-[1440px]">
+                <div className="flex items-center justify-between h-[52px] md:h-[88px]">
+                    <Link href="/" className="inline-block shrink-0">
+                        <img
+                            src="/logo.svg"
+                            alt="ЗНАКОВЫЕ МЕСТА"
+                            className="object-contain w-[90px] md:w-[137.75px] h-auto"
+                        />
                     </Link>
-                    <nav className="hidden md:flex items-center space-x-8">
+
+                    <div className="flex items-center">
+                        <nav className="hidden md:flex items-center space-x-8 lg:space-x-12 mr-8 lg:mr-12">
+                            {navLinks.map((link) => (
+                                <Link key={link.href} href={link.href}
+                                      className="text-[14px] text-black hover:opacity-60 transition-opacity whitespace-nowrap">
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </nav>
+
+                        <div className="flex items-center">
+                            <button className="hidden md:block p-1 hover:opacity-60 transition-opacity">
+                                <img src="/icon-search.svg" alt="Search" className="w-6 h-6"/>
+                            </button>
+                            <button
+                                className="md:hidden flex flex-col justify-center items-end space-y-1 w-8 h-8 relative z-[60]"
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            >
+                                {isMenuOpen ? (
+                                    <div className="relative w-6 h-6">
+                                        <span className="absolute inset-0 m-auto w-6 h-0.5 bg-black rotate-45"></span>
+                                        <span className="absolute inset-0 m-auto w-6 h-0.5 bg-black -rotate-45"></span>
+                                    </div>
+                                ) : (
+                                    <>
+                                        <span className="block w-6 h-0.5 bg-black"></span>
+                                        <span className="block w-6 h-0.5 bg-black"></span>
+                                        <span className="block w-6 h-0.5 bg-black"></span>
+                                    </>
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    className={`fixed inset-0 bg-white z-50 transition-all duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'} md:hidden`}>
+                    <div className="flex flex-col pt-24 px-8 space-y-8">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                                className="text-[18px] text-black font-normal"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
                                 {link.label}
                             </Link>
                         ))}
-                    </nav>
-                    <div className="flex items-center space-x-4">
-                        <button
-                            className="md:flex p-2 hover:bg-gray-100 rounded-full transition-colors hidden sm:block"
-                            aria-label="Search">
-                            <img src="/icon-search.svg" alt="Search" className="w-6 h-6 text-gray-700"/>
-                        </button>
-                    
-                        <button
-                            className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors"
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            aria-label="Toggle menu">
-                            <svg
-                                className="w-6 h-6 text-gray-700"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                {isMenuOpen ? (
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M6 18L18 6M6 6l12 12"/>
-                                ) : (
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M4 6h16M4 12h16M4 18h16"/>
-                                )}
-                            </svg>
-                        </button>
                     </div>
                 </div>
-                {isMenuOpen && (
-                    <nav className="md:hidden py-4 border-t border-gray-200 bg-white shadow-lg">
-                        <div className="flex flex-col space-y-3 px-4">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    className="text-gray-700 hover:text-gray-900 font-medium py-3 px-4 rounded-md transition-colors"
-                                    onClick={() => setIsMenuOpen(false)}>
-                                    {link.label}
-                                </Link>
-                            ))}
-                        </div>
-                    </nav>
-                )}
             </div>
         </header>
     );
