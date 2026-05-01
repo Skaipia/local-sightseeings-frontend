@@ -2,42 +2,57 @@ import Link from 'next/link';
 
 export default function Footer() {
     return (
-        <footer className="bg-[#FAFAFA]">
-            <div className="container mx-auto px-4">
-                <div className="flex flex-col md:flex-row justify-between items-center">
-                    <div className="flex items-center justify-center mb-6 md:mb-0">
-                        <Link href="/" className="flex items-center space-x-2">
-                            <img src="/logo.svg" alt="logotype" className="w-12 h-12 text-gray-700"/>
+        <footer className="bg-[#FAFAFA] mb-[20px]">
+            <div className="container mx-auto py-6 px-8 max-w-[1440px]">
+                <div className="flex flex-col md:flex-row justify-between items-start">
+                    <div className="mb-10 md:mb-0">
+                        <Link href="/" className="inline-block">
+                            <img
+                                src="/logo.svg"
+                                alt="ЗНАКОВЫЕ МЕСТА"
+                                className="object-contain w-[140px] md:w-[155px] lg:w-[172.19px] h-auto"
+                                style={{minHeight: '60px'}}
+                            />
                         </Link>
                     </div>
+                    <div
+                        className="flex flex-col md:flex-row items-start space-y-10 md:space-y-0 md:space-x-16 lg:space-x-24">
 
-                    <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-16">
-                        <nav className="flex flex-col space-y-2">
-                            <Link href="/" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                        <nav className="flex flex-col space-y-1.5">
+                            <Link href="/" className="text-[14px] text-gray-800 hover:text-black transition-colors">
                                 Главная
                             </Link>
-                            <Link href="/sightseeings" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                            <Link href="/sightseeings"
+                                  className="text-[14px] text-gray-800 hover:text-black transition-colors">
                                 Достопримечательности
                             </Link>
-                            <Link href="/routes" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                            <Link href="/routes"
+                                  className="text-[14px] text-gray-800 hover:text-black transition-colors">
                                 Маршруты
                             </Link>
-                            <Link href="/about" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+                            <Link href="/about"
+                                  className="text-[14px] text-gray-800 hover:text-black transition-colors">
                                 О проекте
                             </Link>
                         </nav>
-                    
-                        <div className="flex flex-col space-y-2">
-                            <span className="text-gray-700 font-medium">Соц.сети</span>
-                            <div className="flex space-x-4">
-                                <a href="#" className="p-2 rounded-full transition-colors">
-                                    <img src="/icons/max.svg" alt="Max" className="w-6 h-6"/>
+
+                        <div className="flex flex-col space-y-4">
+                            <span className="text-[16px] font-semibold text-black leading-none">
+                                Соц.сети
+                            </span>
+                            <div className="flex space-x-3">
+                                <a href="https://max.ru/join/FOGzABe6EiNdhb8vr61vu54go6tcOxD4VZD6GN_qlmQ"
+                                   target="_blank" rel="noopener noreferrer"
+                                   className="hover:opacity-80 transition-opacity">
+                                    <img src="/icons/max.svg" alt="MAX" className="w-8 h-8"/>
                                 </a>
-                                <a href="#" className="p-2 rounded-full transition-colors">
-                                    <img src="/icons/vk.svg" alt="VK" className="w-6 h-6"/>
+                                <a href="https://vk.com/club237893137" target="_blank" rel="noopener noreferrer"
+                                   className="hover:opacity-80 transition-opacity">
+                                    <img src="/icons/vk.svg" alt="VK" className="w-8 h-8"/>
                                 </a>
-                                <a href="https://rutube.ru/channel/26214635/" className="p-2 rounded-full transition-colors">
-                                    <img src="/icons/rutube.svg" alt="Rutube" className="w-6 h-6"/>
+                                <a href="https://rutube.ru" target="_blank" rel="noopener noreferrer"
+                                   className="hover:opacity-80 transition-opacity">
+                                    <img src="/icons/rutube.svg" alt="Rutube" className="w-8 h-8"/>
                                 </a>
                             </div>
                         </div>
