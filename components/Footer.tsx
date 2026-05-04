@@ -50,7 +50,7 @@ export default function Footer() {
                                    className="hover:opacity-80 transition-opacity">
                                     <img src="/icons/vk.svg" alt="VK" className="w-8 h-8"/>
                                 </a>
-                                <a href="https://rutube.ru" target="_blank" rel="noopener noreferrer"
+                                <a href="https://rutube.ru/channel/26214635/" target="_blank" rel="noopener noreferrer"
                                    className="hover:opacity-80 transition-opacity">
                                     <img src="/icons/rutube.svg" alt="Rutube" className="w-8 h-8"/>
                                 </a>
