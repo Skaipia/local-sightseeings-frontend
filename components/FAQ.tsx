@@ -40,7 +40,7 @@ const FAQ = () => {
     };
 
     return (
-        <section className="bg-white mb-10 md:mb-[60px] lg:mb-[110px]">
+        <section className="mb-10 md:mb-[60px] lg:mb-[110px]">
             <div className="container mx-auto py-16 px-8 max-w-[1440px]">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
                     <div className="lg:col-span-6">

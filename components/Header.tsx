@@ -21,7 +21,7 @@ export default function Header() {
     ];
 
     return (
-        <header className="bg-white relative z-50">
+        <header className="relative z-50">
             <div className="container mx-auto px-8 max-w-[1440px]">
                 <div className="flex items-center justify-between h-[52px] md:h-[88px]">
                     <Link href="/" className="inline-block shrink-0">
@@ -68,7 +68,7 @@ export default function Header() {
                 </div>
 
                 <div
-                    className={`fixed inset-0 bg-white z-50 transition-all duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'} md:hidden`}>
+                    className={`fixed inset-0 bg-background z-50 transition-all duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'} md:hidden`}>
                     <div className="flex flex-col pt-24 px-8 space-y-8">
                         {navLinks.map((link) => (
                             <Link
