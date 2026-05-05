@@ -26,7 +26,7 @@ export default function Header() {
                 <div className="flex items-center justify-between h-[52px] md:h-[88px]">
                     <Link href="/" className="inline-block shrink-0">
                         <img
-                            src="/logo.svg"
+                            src="/images/logo.svg"
                             alt="ЗНАКОВЫЕ МЕСТА"
                             className="object-contain w-[90px] md:w-[137.75px] h-auto"
                         />
@@ -44,7 +44,7 @@ export default function Header() {
 
                         <div className="flex items-center">
                             <button className="hidden md:block p-1 hover:opacity-60 transition-opacity">
-                                <img src="/icon-search.svg" alt="Search" className="w-6 h-6"/>
+                                <img src="/images/icon-search.svg" alt="Search" className="w-6 h-6"/>
                             </button>
                             <button
                                 className="md:hidden flex flex-col justify-center items-end space-y-1 w-8 h-8 relative z-[60]"

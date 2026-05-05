@@ -8,7 +8,7 @@ export default function Footer() {
                     <div className="mb-10 md:mb-0">
                         <Link href="/" className="inline-block">
                             <img
-                                src="/logo.svg"
+                                src="/images/logo.svg"
                                 alt="ЗНАКОВЫЕ МЕСТА"
                                 className="object-contain w-[140px] md:w-[155px] lg:w-[172.19px] h-auto"
                                 style={{minHeight: '60px'}}
@@ -44,15 +44,15 @@ export default function Footer() {
                                 <a href="https://max.ru/join/FOGzABe6EiNdhb8vr61vu54go6tcOxD4VZD6GN_qlmQ"
                                    target="_blank" rel="noopener noreferrer"
                                    className="hover:opacity-80 transition-opacity">
-                                    <img src="/icons/max.svg" alt="MAX" className="w-8 h-8"/>
+                                    <img src="/images/social%20media/max.svg" alt="MAX" className="w-8 h-8"/>
                                 </a>
                                 <a href="https://vk.com/club237893137" target="_blank" rel="noopener noreferrer"
                                    className="hover:opacity-80 transition-opacity">
-                                    <img src="/icons/vk.svg" alt="VK" className="w-8 h-8"/>
+                                    <img src="/images/social%20media/vk.svg" alt="VK" className="w-8 h-8"/>
                                 </a>
                                 <a href="https://rutube.ru/channel/26214635/" target="_blank" rel="noopener noreferrer"
                                    className="hover:opacity-80 transition-opacity">
-                                    <img src="/icons/rutube.svg" alt="Rutube" className="w-8 h-8"/>
+                                    <img src="/images/social%20media/rutube.svg" alt="Rutube" className="w-8 h-8"/>
                                 </a>
                             </div>
                         </div>
