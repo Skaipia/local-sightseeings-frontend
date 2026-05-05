@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import Main from '@/components/Main';
 import Routes from '@/components/Routes';
 import FAQ from '@/components/FAQ';
 
 export default function Home() {
     return (
         <div className="min-h-screen bg-white">
+            <Main />
             <main className="container mx-auto px-5 md:px-8 py-16">
                 <div className="text-center mb-16">
                     <h1 className="text-5xl font-bold text-gray-900 mb-4">
