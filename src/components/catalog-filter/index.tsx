@@ -4,15 +4,15 @@ import React, { useState } from "react";
 import s from "./styles.module.css";
 
 export type FilterItem = {
-  id: string | number;
+  id: number;
   label: string;
 };
 
 type Props = {
   title: string;
   items: FilterItem[];
-  selected: (string | number)[];
-  onChange: (selected: (string | number)[]) => void;
+  selected: (number)[];
+  onChange: (selected: (number)[]) => void;
   defaultVisibleCount?: number;
 };
 
@@ -25,7 +25,7 @@ export const CatalogFilter: React.FC<Props> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleItem = (id: string | number) => {
+  const toggleItem = (id:number) => {
     if (selected.includes(id)) {
       onChange(selected.filter((item) => item !== id));
     } else {

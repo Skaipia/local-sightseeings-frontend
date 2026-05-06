@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { CatalogFilter, FilterItem } from '@/src/components/catalog-filter';
 import { SearchInput } from '@/src/components/search';
 import { SortBar, SortOption } from '@/src/components/sort-bar';
+import { createPortal } from 'react-dom';
+import { CatalogFilterMobileMenu } from '@/src/components/catalog-filter-mobile-menu';
 
 const locations: FilterItem[] = [
   { id: 1, label: 'Все' },
@@ -61,8 +63,19 @@ export default function Home() {
   const [selectedWorkingHours, setSelectedWorkingHours] = useState<(number)[]>([]);
   const [selectedCosts, setSelectedCosts] = useState<(number)[]>([]);
 
+  const [isMobileFilterOpen, setMobileFilterOpen] = useState<boolean>(false);
+
+  const openMobileFilter = () => {
+    setMobileFilterOpen(true)
+  }
+
+  const closeMobileFilter = () => {
+    setMobileFilterOpen(false)
+  }
+
   return (
-    <div className="container mx-auto px-8 pt-8 max-w-[1440px]">
+    <>
+     <div className="container mx-auto px-8 pt-8 max-w-[1440px]">
       <h1 className={cn('font-golos', s.title)}>Достопримечательности</h1>
       <div className={s.page}>
         <aside className={s.aside}>
@@ -78,7 +91,7 @@ export default function Home() {
         </aside>
         <div className={s.main}>
           <SearchInput value={search} onChange={setSearch} />
-          <SortBar options={options} value={sort} onChange={setSort} />
+          <SortBar options={options} value={sort} onChange={setSort} openMobileFilter={openMobileFilter}/>
 
           <div className={s.content}>
             <SightCard
@@ -133,5 +146,8 @@ export default function Home() {
         </div>
       </div>
     </div>
+    {isMobileFilterOpen && createPortal(<CatalogFilterMobileMenu />, document.body)}
+    </>
+   
   );
 }
