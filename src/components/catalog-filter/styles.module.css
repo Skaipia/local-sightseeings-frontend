@@ -1,5 +1,5 @@
 .catalogFilter {
- margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .header {
@@ -10,6 +10,16 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 120%;
+}
+
+.listWrapper {
+  max-height: calc(40px * 4); /* примерная высота для 4 элементов */
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.listWrapper.expanded {
+  max-height: 1000px; /* достаточно большая высота для всего списка */
 }
 
 .list {
@@ -42,6 +52,7 @@
   display: inline-block;
   position: relative;
   transition: all 0.2s ease;
+  padding: 3px;
 }
 
 /* checked */
@@ -51,7 +62,7 @@
 }
 
 /* галочка */
-.checked::after {
+/* .checked::after {
   content: "";
   position: absolute;
   left: 0px;
@@ -61,6 +72,14 @@
   border: solid #fff;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+} */
+
+/* SVG галочка */
+.checkmark {
+  width: 12px;
+  height: 12px;
+  display: grid;
+  place-items: center;
 }
 
 /* hover */

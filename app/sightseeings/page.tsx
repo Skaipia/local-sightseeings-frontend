@@ -8,13 +8,42 @@ import { CatalogFilter, FilterItem } from '@/src/components/catalog-filter';
 import { SearchInput } from '@/src/components/search';
 import { SortBar, SortOption } from '@/src/components/sort-bar';
 
-const items: FilterItem[] = [
-  { id: 1, label: 'Apple' },
-  { id: 2, label: 'Samsung' },
-  { id: 3, label: 'Xiaomi' },
-  { id: 4, label: 'Huawei' },
-  { id: 5, label: 'Honor' },
-  { id: 6, label: 'Realme' },
+const locations: FilterItem[] = [
+  { id: 1, label: 'Все' },
+  { id: 2, label: 'Тольятти' },
+  { id: 3, label: 'Самара' },
+  { id: 4, label: 'Нефтегорск' },
+  { id: 5, label: 'Город1' },
+  { id: 6, label: 'Город2' },
+];
+
+const categories: FilterItem[] = [
+  { id: 1, label: 'Все' },
+  { id: 2, label: 'Арки и ворота' },
+  { id: 3, label: 'Библиотеки' },
+  { id: 4, label: 'Водопады' },
+  { id: 5, label: 'Набережные' },
+  { id: 6, label: 'Скалы' },
+];
+
+const userTypes: FilterItem[] = [
+  { id: 1, label: 'Всем' },
+  { id: 2, label: 'Детям' },
+  { id: 3, label: 'Подросткам' },
+  { id: 4, label: 'Взрослым' },
+  { id: 5, label: 'Пенсионерам' },
+];
+
+const workingHours: FilterItem[] = [
+  { id: 1, label: 'Все' },
+  { id: 2, label: 'Круглосуточно' },
+  { id: 3, label: 'Открыто' },
+];
+
+const costs: FilterItem[] = [
+  { id: 1, label: 'Все' },
+  { id: 2, label: 'Платно' },
+  { id: 3, label: 'Бесплатно' },
 ];
 
 const options: SortOption[] = [
@@ -23,20 +52,25 @@ const options: SortOption[] = [
 ];
 
 export default function Home() {
-  const [selected, setSelected] = useState<(string | number)[]>([]);
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('popular');
+
+  const [location, setLocation] = useState<(number)[]>([]);
+  const [category, setCategory] = useState<(number)[]>([]);
+  const [userType, setUserType] = useState<(number)[]>([]);
+  const [selectedWorkingHours, setSelectedWorkingHours] = useState<(number)[]>([]);
+  const [selectedCosts, setSelectedCosts] = useState<(number)[]>([]);
 
   return (
     <div className="container mx-auto px-8 pt-8 max-w-[1440px]">
       <h1 className={cn('font-golos', s.title)}>Достопримечательности</h1>
       <div className={s.page}>
         <aside className={s.aside}>
-          <CatalogFilter title="Бренд" items={items} selected={selected} onChange={setSelected} />
-          <CatalogFilter title="Бренд" items={items} selected={selected} onChange={setSelected} />
-          <CatalogFilter title="Бренд" items={items} selected={selected} onChange={setSelected} />
-          <CatalogFilter title="Бренд" items={items} selected={selected} onChange={setSelected} />
-          <CatalogFilter title="Бренд" items={items} selected={selected} onChange={setSelected} />
+          <CatalogFilter title="Местонахождение" items={locations} selected={location} onChange={setLocation} />
+          <CatalogFilter title="Категория" items={categories} selected={category} onChange={setCategory} />
+          <CatalogFilter title="Будет интересно" items={userTypes} selected={userType} onChange={setUserType} />
+          <CatalogFilter title="Время работы" items={workingHours} selected={selectedWorkingHours} onChange={setSelectedWorkingHours} />
+          <CatalogFilter title="Стоимость" items={costs} selected={selectedCosts} onChange={setSelectedCosts} />
           <div className={s.buttons}>
             <button className={s.submit}>Применить</button>
             <button className={s.reset}>Сбросить</button>
