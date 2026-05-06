@@ -1,0 +1,78 @@
+.catalogFilter {
+ margin-bottom: 32px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 120%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  position: relative;
+}
+
+/* скрытый input */
+.input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* кастомный чекбокс */
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #5D5D5D;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* checked */
+.checked {
+  background-color: #8CE688;
+  border-color: #8CE688;
+}
+
+/* галочка */
+.checked::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 8px;
+  height: 16px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* hover */
+.item:hover .checkbox {
+  border-color: #8CE688;
+}
+
+.toggle {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  color: #217EA6;
+  cursor: pointer;
+  padding: 0;
+}
