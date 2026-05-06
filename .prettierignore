@@ -1,0 +1,34 @@
+# Build and distribution folders
+dist/
+build/
+out/
+.next/
+.vercel/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage reports (Jest, Istanbul, etc.)
+coverage/
+.nyc_output/
+
+# Documentation and metadata
+CHANGELOG.md
+CODEOWNERS
+LICENSE
+
+# TypeScript artifacts
+tsconfig.tsbuildinfo
+
+# Lock files (some prefer to format these, but they can be large)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment files
+.env
+.env.*
