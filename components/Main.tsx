@@ -2,35 +2,34 @@ import Link from 'next/link';
 
 export default function Main() {
     return (
-        <section
-            className="relative w-full h-[100vh] min-h-[600px] md:h-[700px] lg:h-[850px] overflow-hidden flex items-end">
-            <img
-                src="/images/main-bg.jpg"
-                alt="Самарская область — жемчужина на Волге"
-                className="absolute inset-0 w-full h-full object-cover"/>
-
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"/>
-
+        <section className="w-full">
             <div
-                className="relative z-10 w-full container mx-auto px-5 md:px-10 lg:px-12 max-w-[1440px] pb-10 md:pb-16 lg:pb-20">
+                className="relative mx-auto flex h-[310px] w-full max-w-[1920px] items-end overflow-hidden md:h-[780px] lg:h-[800px]">
+                <img
+                    src="/images/main-bg.jpg"
+                    alt="Самарская область — жемчужина на Волге"
+                    className="absolute inset-0 h-full w-full object-cover object-[50%_50%]"/>
 
-                <div className="w-full max-w-full lg:max-w-[1344px]">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent"/>
 
-                    <h1 className="text-white text-[36px] md:text-[60px] lg:text-[84px] font-bold leading-[1.1] md:leading-[1.05] tracking-tight mb-5 md:mb-6">
-                        Откройте Самарскую <span className="whitespace-nowrap">область —</span> <br
-                        className="hidden md:block"/> жемчужину на Волге
-                    </h1>
-                    <p className="text-[#FAFAFA] text-[15px] md:text-[18px] lg:text-[20px] mb-8 md:mb-10 font-normal leading-snug max-w-[300px] md:max-w-2xl">
-                        Достопримечательности, маршруты и статьи для самостоятельных путешествий.
-                    </p>
+                <div className="relative z-10 w-full px-5 pb-6 md:px-8 md:pb-16 lg:px-8 lg:pb-20">
 
-                    <Link
-                        href="/sightseeings"
-                        className="inline-flex items-center justify-center bg-[#217EA6] hover:bg-[#1a6383] text-white text-[14px] md:text-[15px] font-semibold rounded-none transition-colors duration-200
-                        h-[35px]
-                        px-8 w-full sm:w-auto lg:w-[329px] lg:px-0">
-                        Начать путешествие
-                    </Link>
+                    <div className="w-full max-w-full lg:max-w-[1120px]">
+
+                        <h1 className="mb-4 text-[30px] font-semibold leading-[1.08] text-white md:mb-6 md:text-[64px] md:leading-[1.06] lg:text-[72px]">
+                            Откройте Самарскую <span className="whitespace-nowrap">область —</span> <br
+                            className="hidden md:block"/> жемчужину на Волге
+                        </h1>
+                        <p className="mb-4 max-w-[280px] text-[10px] font-normal leading-snug text-[#FAFAFA] md:mb-8 md:max-w-2xl md:text-[16px] lg:text-[18px]">
+                            Достопримечательности, маршруты и статьи для самостоятельных путешествий.
+                        </p>
+
+                        <Link
+                            href="/sightseeings"
+                            className="inline-flex h-[28px] w-full items-center justify-center rounded-none bg-[#217EA6] px-8 text-[10px] font-semibold text-white transition-colors duration-200 hover:bg-[#1a6383] sm:w-[280px] md:h-[35px] md:w-[329px] md:text-[14px]">
+                            Начать путешествие
+                        </Link>
+                    </div>
                 </div>
             </div>
         </section>
