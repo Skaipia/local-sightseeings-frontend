@@ -1,0 +1,32 @@
+.title {
+  font-size: 64px;
+  line-height: 120%;
+  margin-bottom: 40px;
+  color: #0b1215;
+  font-weight: 700;
+
+  @media (min-width: 991px) {
+    display: none;
+  }
+  @media (max-width: 880px) {
+    font-size: 40px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.submit,
+.reset {
+  width: 100%;
+}
+.submit {
+  box-shadow: 1px 4px 4px rgba(0, 0, 0, 25%);
+}
+
+.reset {
+  margin-top: 20px;
+}

@@ -49,9 +49,9 @@ export const SortBar: React.FC<Props> = ({ options, value, onChange, openMobileF
           <path
             d="M21 1H1L9 10.46V17L13 19V10.46L21 1Z"
             stroke="#25282B"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       </button>
