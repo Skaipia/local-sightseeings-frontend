@@ -3,16 +3,17 @@
 import { SightCard } from '@/components/sight-card';
 import s from './styles.module.css';
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { SearchInput } from '@/components/search';
 import { SortBar, SortOption } from '@/components/sort-bar';
 import { createPortal } from 'react-dom';
 import { CatalogFilterMenu, useFilterForm } from '@/components/catalog-filter-menu';
 import { sightsList } from '@/app/sightseeings/_data';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 
 const options: SortOption[] = [
   { value: 'popular', label: 'Популярности' },
-  { value: 'rating', label: 'Рейтингу' },
+  // { value: 'rating', label: 'Рейтингу' },
 ];
 
 export default function Home() {
@@ -29,12 +30,30 @@ export default function Home() {
     setMobileFilterOpen(false);
   };
 
-  const [sights, setSights] = useState(sightsList);
+  // const [sights, setSights] = useState(sightsList);
 
   const handleSubmitFilter = (filter: ReturnType<typeof useFilterForm>['filter']) => {
     // TODO: запрос на бэк с фильтром; setSights(отфильтрованные данные)
     closeMobileFilter();
   };
+
+  //TODO временно
+  const debouncedSearch = useDebounce(search, 300);
+
+  const filteredSights = useMemo(() => {
+    if (!debouncedSearch.trim()) {
+      return sightsList;
+    }
+
+    const searchLower = debouncedSearch.toLowerCase().trim();
+    return sightsList.filter((sight) => {
+      return (
+        sight.title.toLowerCase().includes(searchLower) ||
+        sight.description.toLowerCase().includes(searchLower) ||
+        sight.location.toLowerCase().includes(searchLower)
+      );
+    });
+  }, [debouncedSearch]);
 
   return (
     <>
@@ -46,29 +65,23 @@ export default function Home() {
             <CatalogFilterMenu formConfig={filterFormConfig} onSubmit={handleSubmitFilter} />
           </aside>
           <div className={s.main}>
-            <SearchInput
-              value={search}
-              onChange={(search) => {
-                setSearch(search);
-                setSights(search.length > 4 ? [] : sightsList); // TODO: remove
-              }}
-            />
+            <SearchInput value={search} onChange={setSearch} />
             <SortBar options={options} value={sort} onChange={setSort} openMobileFilter={openMobileFilter} />
 
-            {sights.length === 0 ? (
+            {filteredSights.length === 0 ? (
               <section className="flex flex-col items-center text-center w-full pt-16 gap-4">
                 <p className="text-2xl font-semibold">К сожалению, ничего не нашли по вашему запросу :(</p>
                 <p>Попробуйте переформулировать или воспользуйтесь фильтрами.</p>
               </section>
             ) : (
               <div className={s.content}>
-                {sights.map((sight) => (
+                {filteredSights.map((sight, index) => (
                   <SightCard
-                    key={sight.id}
+                    key={index}
                     imageUrl={sight.imageUrl}
-                    sightName={sight.sightName}
-                    sightShortDescription={sight.sightShortDescription}
-                    sightLocation={sight.sightLocation}
+                    sightName={sight.title}
+                    sightShortDescription={sight.description}
+                    sightLocation={sight.location}
                   />
                 ))}
               </div>

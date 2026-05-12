@@ -1,7 +1,6 @@
-export type Sight = {
-  id: string
-  imageUrl?: string;
-  sightName: string;
-  sightShortDescription?: string;
-  sightLocation: string;
-};
+export interface ISight {
+    title: string;
+    description: string;
+    imageUrl: string;
+    location: string;
+}
