@@ -1,0 +1,83 @@
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border: 2px solid transparent;
+  border-radius: 0.2em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 700;
+  line-height: 120%;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.action-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 14px;
+
+  @media (width <= 576px) {
+    padding: 0.35rem 0.7rem;
+  }
+}
+
+.action-md {
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+}
+
+.action-lg {
+  padding: 0.6rem 1rem;
+  font-size: 18px;
+
+  @media (width <= 576px) {
+    padding: 0.7rem 1.1rem;
+  }
+}
+
+.action-primary {
+  color: white;
+  background-color: #217ea6;
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    background-color: #1a6383;
+  }
+}
+
+.action-outline {
+  background-color: transparent;
+  border-color: black;
+
+  &:disabled {
+    border-color: gray;
+  }
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.057);
+  }
+}
+
+.action-link {
+  background-color: transparent;
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.057);
+  }
+}
+
+.action-plain {
+  padding: 0;
+  border: none;
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    color: rgba(0, 0, 0, 0.85);
+  }
+}

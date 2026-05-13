@@ -1,21 +1,23 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-    --background: #FAFAFA;
-    --foreground: #171717;
+  --background: #fafafa;
+  --foreground: #171717;
 }
 
 @theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-golos-text);
-    --font-weight-bold: 600;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-golos-text);
+  --font-weight-bold: 600;
 }
 
 body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-golos-text), Arial, Helvetica, sans-serif;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-golos-text), Arial, Helvetica, sans-serif;
 }
 
 .no-scrollbar {

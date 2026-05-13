@@ -1,0 +1,83 @@
+.title {
+  font-size: 64px;
+  line-height: 120%;
+  margin-bottom: 40px;
+  color: #0b1215;
+  font-weight: 700;
+
+  @media (max-width: 880px) {
+    font-size: 40px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.main {
+  width: 100%;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+  @media (max-width: 1280px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 991px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 896px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 721px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aside {
+  margin-bottom: 30px;
+  @media (max-width: 991px) {
+    display: none;
+  }
+}
+
+.page {
+  display: grid;
+  grid-template-columns: 213px 1fr;
+  gap: 20px;
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mobileMenu {
+  position: fixed;
+  overflow-y: auto;
+  inset: 0;
+  background-color: #fff;
+  z-index: 100;
+  padding-bottom: 40px;
+}
+
+body:has(.mobileMenu) {
+  overflow-y: hidden !important;
+}
