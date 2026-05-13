@@ -12,11 +12,11 @@ interface SightCardProps {
 
 export const SightCard: FC<SightCardProps> = ({ imageUrl, sightName, sightShortDescription, sightLocation }) => {
   return (
-    <div className={s.card}>
+    <article className={s.card}>
       <Image className={s.image} src={imageUrl} alt={sightShortDescription} width={212} height={128} />
-      <h6 className={cn(s['text-md'], s.title)}>{sightName}</h6>
+      <h3 className={cn(s['text-md'], s.title)}>{sightName}</h3>
       <p className={cn(s['text-lg'], s.description)}>{sightShortDescription}</p>
-      <span className={s['text-md']}>{sightLocation}</span>
-    </div>
+      <p className={cn(s['text-md'], s.location)}>{sightLocation}</p>
+    </article>
   );
 };

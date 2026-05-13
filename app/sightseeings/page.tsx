@@ -13,7 +13,7 @@ import { useDebounce } from '@/shared/hooks/useDebounce';
 
 const options: SortOption[] = [
   { value: 'popular', label: 'Популярности' },
-  // { value: 'rating', label: 'Рейтингу' },
+  { value: 'rating', label: 'Рейтингу' },
 ];
 
 export default function Home() {
