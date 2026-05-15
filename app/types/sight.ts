@@ -1,6 +1,7 @@
-export interface ISight {
-    title: string;
-    description: string;
-    imageUrl: string;
-    location: string;
+export type SightT = ISight & {
+    category?: string;
+    location?: string;
+    price?: string;
+    interestBy?: string;
+    openingHours?: string;
 }

@@ -1,29 +1,24 @@
 import s from './styles.module.css';
-import { CatalogFilter, FilterItem } from '@/components/catalog-filter';
+import { CatalogFilter } from '@/components/catalog-filter';
 import { FC, useCallback, useState } from 'react';
 import cn from 'classnames';
-import { locations, categories, userTypes, workingHours as workingHoursOptions, costs } from './_data';
+import { locationOptions, categoryOptions, interestByOptions, openingHoursOptions, priceOptions } from './_data';
 import { Button } from '@/shared/Button';
 
-export interface Filter {
-  location: number[];
-  category: number[];
-  userType: number[];
-  workingHours: number[];
-  selectedCosts: number[];
-}
-const defaultFilter: Filter = {
+export type Filter = Record<ESightsFilter, string[]>;
+
+export const defaultFilter: Filter = {
   location: [],
+  interestBy: [],
+  openingHours: [],
   category: [],
-  userType: [],
-  workingHours: [],
-  selectedCosts: [],
+  price: [],
 };
 
 export const useFilterForm = (initialFilter: Filter = defaultFilter) => {
   const [filter, setFilter] = useState<Filter>(initialFilter);
 
-  const handleChange = useCallback((field: keyof Filter, value: number[]) => {
+  const handleChange = useCallback((field: `${ESightsFilter}`, value: string[]) => {
     setFilter((prev) => ({ ...prev, [field]: value }));
   }, []);
 
@@ -63,33 +58,33 @@ export const CatalogFilterMenu: FC<CatalogFilterMenuProps> = ({
 
       <CatalogFilter
         title="Местонахождение"
-        items={locations}
+        items={locationOptions}
         selected={filter.location}
         onChange={(value) => handleChange('location', value)}
       />
       <CatalogFilter
         title="Категория"
-        items={categories}
+        items={categoryOptions}
         selected={filter.category}
         onChange={(value) => handleChange('category', value)}
       />
       <CatalogFilter
         title="Будет интересно"
-        items={userTypes}
-        selected={filter.userType}
-        onChange={(value) => handleChange('userType', value)}
+        items={interestByOptions}
+        selected={filter.interestBy}
+        onChange={(value) => handleChange('interestBy', value)}
       />
       <CatalogFilter
         title="Время работы"
-        items={workingHoursOptions}
-        selected={filter.workingHours}
-        onChange={(value) => handleChange('workingHours', value)}
+        items={openingHoursOptions}
+        selected={filter.openingHours}
+        onChange={(value) => handleChange('openingHours', value)}
       />
       <CatalogFilter
         title="Стоимость"
-        items={costs}
-        selected={filter.selectedCosts}
-        onChange={(value) => handleChange('selectedCosts', value)}
+        items={priceOptions}
+        selected={filter.price}
+        onChange={(value) => handleChange('price', value)}
       />
 
       {children}

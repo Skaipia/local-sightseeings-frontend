@@ -1,6 +1,6 @@
-import { ISight } from '@/app/types/sight';
+import { SightT } from '@/app/types/sight';
 
-export const sightsList: ISight[] = [
+export const mockSightsList: SightT[] = [
   {
     imageUrl: '/test-sight-card.png',
     title: 'Памятник Преданности',
@@ -18,5 +18,5 @@ export const sightsList: ISight[] = [
     title: 'Дом-Музей В. И. Ленина',
     description: 'Здесь зародилась идея Откябрьской революции 1917',
     location: 'Самара',
-  }
+  },
 ];

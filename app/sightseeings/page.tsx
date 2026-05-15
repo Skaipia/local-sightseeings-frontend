@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
 import { SightCard } from '@/components/sight-card';
@@ -7,8 +8,8 @@ import { useMemo, useState } from 'react';
 import { SearchInput } from '@/components/search';
 import { SortBar, SortOption } from '@/components/sort-bar';
 import { createPortal } from 'react-dom';
-import { CatalogFilterMenu, useFilterForm } from '@/components/catalog-filter-menu';
-import { sightsList } from '@/app/sightseeings/_data';
+import { CatalogFilterMenu, defaultFilter, Filter, useFilterForm } from '@/components/catalog-filter-menu';
+import { mockSightsList } from '@/app/sightseeings/_data';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 
 const options: SortOption[] = [
@@ -18,11 +19,11 @@ const options: SortOption[] = [
 
 export default function Home() {
   const [search, setSearch] = useState('');
+  const debouncedSearch = useDebounce(search, 300);
   const [sort, setSort] = useState('popular');
+  const [appliedFilter, setAppliedFilter] = useState<Filter>(defaultFilter);
+
   const [isMobileFilterOpen, setMobileFilterOpen] = useState<boolean>(false);
-
-  const filterFormConfig = useFilterForm();
-
   const openMobileFilter = () => {
     setMobileFilterOpen(true);
   };
@@ -30,30 +31,58 @@ export default function Home() {
     setMobileFilterOpen(false);
   };
 
-  // const [sights, setSights] = useState(sightsList);
+  const filterFormConfig = useFilterForm();
 
-  const handleSubmitFilter = (filter: ReturnType<typeof useFilterForm>['filter']) => {
-    // TODO: запрос на бэк с фильтром; setSights(отфильтрованные данные)
+  const sights = useMemo(
+    () =>
+      // TODO: запрос на бэк с фильтром; setSights(отфильтрованные данные)
+      mockSightsList.filter((one) => {
+        const searchStr = debouncedSearch.toLowerCase().trim();
+        const isFitBySearch = searchStr
+          ? one.title.toLowerCase().includes(searchStr) ||
+            one.description.toLowerCase().includes(searchStr) ||
+            one.location.toLowerCase().includes(searchStr)
+          : true;
+
+        console.log(isFitBySearch, one);
+        if (!isFitBySearch) {
+          return false;
+        }
+
+        const { location, category, price, interestBy, openingHours } = appliedFilter;
+        const isFilteredByLocation = location.length ? !appliedFilter.location.includes(one.location) : false;
+        if (isFilteredByLocation) {
+          return false;
+        }
+        const isFilteredByCategory =
+          category.length && one.category ? !appliedFilter.category.includes(one.category) : false;
+        if (isFilteredByCategory) {
+          return false;
+        }
+        const isFilteredByPrice = price.length && one.price ? !appliedFilter.price.includes(one.price) : false;
+        if (isFilteredByPrice) {
+          return false;
+        }
+        const isFilteredByInterest =
+          interestBy.length && one.interestBy ? !appliedFilter.interestBy.includes(one.interestBy) : false;
+        if (isFilteredByInterest) {
+          return false;
+        }
+        const isFilteredByOpeningHours =
+          openingHours.length && one.openingHours ? !appliedFilter.openingHours.includes(one.openingHours) : false;
+        if (isFilteredByOpeningHours) {
+          return false;
+        }
+        return true;
+      }),
+    [appliedFilter, debouncedSearch]
+  );
+
+  const handleSubmitFilter = (newFilters: Filter) => {
+    console.log(newFilters);
+    setAppliedFilter(newFilters);
     closeMobileFilter();
   };
-
-  //TODO временно
-  const debouncedSearch = useDebounce(search, 300);
-
-  const filteredSights = useMemo(() => {
-    if (!debouncedSearch.trim()) {
-      return sightsList;
-    }
-
-    const searchLower = debouncedSearch.toLowerCase().trim();
-    return sightsList.filter((sight) => {
-      return (
-        sight.title.toLowerCase().includes(searchLower) ||
-        sight.description.toLowerCase().includes(searchLower) ||
-        sight.location.toLowerCase().includes(searchLower)
-      );
-    });
-  }, [debouncedSearch]);
 
   return (
     <>
@@ -62,20 +91,24 @@ export default function Home() {
 
         <div className={s.page}>
           <aside className={s.aside}>
-            <CatalogFilterMenu formConfig={filterFormConfig} onSubmit={handleSubmitFilter} />
+            <CatalogFilterMenu
+              formConfig={filterFormConfig}
+              onSubmit={handleSubmitFilter}
+              onReset={() => setAppliedFilter(defaultFilter)}
+            />
           </aside>
           <div className={s.main}>
             <SearchInput value={search} onChange={setSearch} />
             <SortBar options={options} value={sort} onChange={setSort} openMobileFilter={openMobileFilter} />
 
-            {filteredSights.length === 0 ? (
+            {sights.length === 0 ? (
               <section className="flex flex-col items-center text-center w-full pt-16 gap-4">
                 <p className="text-2xl font-semibold">К сожалению, ничего не нашли по вашему запросу :(</p>
                 <p>Попробуйте переформулировать или воспользуйтесь фильтрами.</p>
               </section>
             ) : (
               <div className={s.content}>
-                {filteredSights.map((sight, index) => (
+                {sights.map((sight, index) => (
                   <SightCard
                     key={index}
                     imageUrl={sight.imageUrl}
@@ -92,7 +125,11 @@ export default function Home() {
       {isMobileFilterOpen &&
         createPortal(
           <div className={cn(s.mobileMenu, 'px-8 pt-8')}>
-            <CatalogFilterMenu formConfig={filterFormConfig} onSubmit={handleSubmitFilter} />
+            <CatalogFilterMenu
+              formConfig={filterFormConfig}
+              onSubmit={handleSubmitFilter}
+              onReset={() => setAppliedFilter(defaultFilter)}
+            />
           </div>,
           document.body
         )}
