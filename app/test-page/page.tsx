@@ -1,3 +1,4 @@
+import { Audio } from "@/components/audio";
 import Gallery from "@/components/gallery";
 import {Point, YandexMap} from "@/components/map";
 
@@ -13,6 +14,7 @@ export default function AboutPage() {
 
               <Gallery />
               <YandexMap center={[54.312579, 48.382514]} zoom={9} points={places}/>
+              <Audio src=""/>
             </main>
         </div>
     );

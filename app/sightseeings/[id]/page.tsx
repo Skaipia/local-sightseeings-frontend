@@ -63,27 +63,26 @@ function VideoCard({ part }: { part: string }) {
   return (
     <article className="w-full">
       <h3 className="mb-4 text-[14px] font-normal text-[#171717] md:text-[16px]">{part}</h3>
-        <div className="relative aspect-video w-full max-w-[680px] overflow-hidden bg-[#d8d3c8]">
-            <img
-                src="/images/place/video-page.jpg"
-                alt="Видео-экскурсия по дому-музею Ленина"
-                className="h-full w-full object-cover object-[50%_45%]"
-            />
-            <video src="https://rutube.ru/video/2da46f86775ec5f6b9589377059dc359/" autoPlay poster="posterimage.jpg">
-                Sorry, your browser doesn't support embedded videos, but don't worry, you can
-                <a href="https://rutube.ru/video/2da46f86775ec5f6b9589377059dc359/">download it</a>
-                and watch it with your favorite video player!
-            </video>
-
-        </div>
+      <div className="relative aspect-video w-full max-w-[680px] overflow-hidden bg-[#d8d3c8]">
+        <img
+          src="/images/place/video-page.jpg"
+          alt="Видео-экскурсия по дому-музею Ленина"
+          className="h-full w-full object-cover object-[50%_45%]"
+        />
+        <video src="https://rutube.ru/video/2da46f86775ec5f6b9589377059dc359/" autoPlay poster="posterimage.jpg">
+          Sorry, your browser doesn't support embedded videos, but don't worry, you can
+          <a href="https://rutube.ru/video/2da46f86775ec5f6b9589377059dc359/">download it</a>
+          and watch it with your favorite video player!
+        </video>
+      </div>
     </article>
   );
 }
-function SectionContent({active}: { active: SectionId }) {
-    if (active === 'info') {
-        return (
-            <div className="max-w-[680px] text-[14px] leading-[1.45] text-[#171717] md:text-[18px]">
-                <div className="mb-10 space-y-6">
+function SectionContent({ active }: { active: SectionId }) {
+  if (active === 'info') {
+    return (
+      <div className="max-w-[680px] text-[14px] leading-[1.45] text-[#171717] md:text-[18px]">
+        <div className="mb-10 space-y-6">
           <p className="flex items-center gap-5">
             <InfoIcon type="pin" />
             <span>ул. Ленина, д. 70</span>
