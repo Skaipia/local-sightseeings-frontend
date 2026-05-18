@@ -1,3 +1,20 @@
+// TODO временная заглушка
+const TEST_IDS = ["1", "2", "3", "4", "5"];
+
+export function generateStaticParams() {
+  return TEST_IDS.map((id) => ({
+    id: id,
+  }));
+}
+//TODO добавить апи для получения всех достопримечательностей и их id если будем использовать github pages
+// export async function generateStaticParams() {
+//   const res = await fetch('.../sightseeings');
+//   const data = await res.json();
+//   return data.map((item: { id: string | number }) => ({
+//     id: String(item.id),
+//   }));
+// }
+
 export default function SightseeingDetailPage({ params }: { params: { id: string } }) {
   return (
     <main className="min-h-screen">
