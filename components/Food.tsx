@@ -20,7 +20,7 @@ export default function Food() {
 
     return (
         <section className="w-full pb-9 md:pb-14 lg:pb-20">
-            <div className="container mx-auto px-5 md:px-8 max-w-[1920px]">
+            <div className="container mx-auto px-5 md:px-8 max-w-[1440px]">
                 <h2 className="mb-6 text-[22px] font-semibold leading-tight text-[#171717] md:mb-10 md:text-[40px] lg:mb-12 lg:text-[42px]">
                     К нам едут за
                 </h2>

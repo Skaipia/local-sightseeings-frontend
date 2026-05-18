@@ -36,37 +36,35 @@ const visitItems = [
 export default function Visits() {
     return (
         <section className="w-full pb-10 md:pb-16 lg:pb-20">
-            <div className="container mx-auto px-5 md:px-8 max-w-[1920px]">
+            <div className="container mx-auto px-5 md:px-8 max-w-[1440px]">
                 <h2 className="mb-6 text-[22px] font-semibold leading-tight text-[#171717] md:mb-10 md:text-[40px] lg:mb-12 lg:text-[42px]">
                     Посещают
                 </h2>
 
                 <div className="overflow-x-auto no-scrollbar -mx-5 md:-mx-8 lg:mx-0 px-5 md:px-8 lg:px-0 pb-1">
                     <div className="flex w-max items-stretch gap-4 md:gap-5 lg:w-full lg:gap-5">
-                        {visitItems.map((item, index) => (
+                        {visitItems.map((item) => (
                             <Link
                                 key={item.title}
                                 href={item.href}
-                                className={`group flex shrink-0 flex-col ${
-                                    index === 0
-                                        ? 'w-[176px] sm:w-[260px] md:w-[340px] lg:flex-[1.55]'
-                                        : 'w-[76px] sm:w-[112px] md:w-[146px] lg:flex-1'
-                                }`}
+                                className="group flex w-[176px] shrink-0 flex-col sm:w-[260px] md:w-[340px] lg:w-auto lg:flex-1 lg:transition-[flex-grow] lg:duration-300 lg:ease-out lg:hover:flex-[1.55]"
                             >
                                 <span
                                     className="relative block h-[236px] overflow-hidden sm:h-[320px] md:h-[420px] lg:h-[400px]">
                                     <img
                                         src={item.image}
                                         alt={item.title}
-                                        className={`h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 ${item.className}`}
+                                        className={`h-full w-full object-cover lg:transition-transform lg:duration-300 lg:group-hover:scale-105 ${item.className}`}
                                     />
                                 </span>
-                                {index === 0 && (
-                                    <span
-                                        className="mt-4 text-[12px] md:text-[18px] lg:text-[20px] font-semibold leading-tight text-[#171717]">
-                                        {item.title}
-                                    </span>
-                                )}
+                                <span
+                                    className="mt-4 text-[12px] font-semibold leading-tight text-[#171717] md:text-[18px] lg:hidden">
+                                    {item.title}
+                                </span>
+                                <span
+                                    className="mt-4 hidden h-[28px] overflow-hidden whitespace-nowrap text-[20px] font-semibold leading-tight text-[#171717] opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 lg:block">
+                                    {item.title}
+                                </span>
                             </Link>
                         ))}
 

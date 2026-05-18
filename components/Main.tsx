@@ -12,7 +12,7 @@ export default function Main() {
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent"/>
 
-                <div className="relative z-10 w-full px-5 pb-6 md:px-8 md:pb-16 lg:px-8 lg:pb-20">
+                <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 pb-6 md:px-8 md:pb-16 lg:px-8 lg:pb-20">
 
                     <div className="w-full max-w-full lg:max-w-[1120px]">
 
