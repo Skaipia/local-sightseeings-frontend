@@ -41,7 +41,7 @@ const FAQ = () => {
 
     return (
         <section className="w-full pb-12 md:pb-20 lg:pb-[120px]">
-            <div className="container mx-auto px-5 md:px-8 max-w-[1920px]">
+            <div className="container mx-auto px-5 md:px-8 max-w-[1440px]">
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-20">
                     <div className="lg:col-span-6">
                         <h2 className="text-[20px] font-semibold leading-tight text-black md:text-[40px] lg:text-[42px]">

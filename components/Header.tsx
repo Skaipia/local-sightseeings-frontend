@@ -22,7 +22,7 @@ export default function Header() {
 
     return (
         <header className="relative z-50">
-            <div className="container mx-auto px-5 md:px-8 max-w-[1920px]">
+            <div className="container mx-auto px-5 md:px-8 max-w-[1440px]">
                 <div className="flex items-center justify-between h-[52px] md:h-[88px]">
                     <Link href="/" className="inline-block shrink-0">
                         <img

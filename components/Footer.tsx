@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function Footer() {
     return (
         <footer className="mb-5">
-            <div className="container mx-auto px-5 py-6 md:px-8 max-w-[1920px]">
+            <div className="container mx-auto px-5 py-6 md:px-8 max-w-[1440px]">
                 <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:gap-0">
                     <div className="mb-10 md:mb-0">
                         <Link href="/" className="inline-block">
