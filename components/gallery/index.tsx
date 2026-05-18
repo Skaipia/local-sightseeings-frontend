@@ -3,19 +3,12 @@
 import Image from "next/image";
 import s from "./styles.module.css"
 
-const images = [
-  "/test-sight-card.png",
-  "/test-sight-card.png",
-  "/test-sight-card.png",
-  "/test-sight-card.png",
-  "/test-sight-card.png",
-  "/test-sight-card.png",
-  "/test-sight-card.png",
-  "/test-sight-card.png",
-  "/test-sight-card.png",
-];
 
-export default function Gallery() {
+interface IGallery {
+  images: string[];
+}
+
+export default function Gallery({ images }: IGallery) {
   return (
     <div className={s.gallery}>
       {images.map((image, index) => (
