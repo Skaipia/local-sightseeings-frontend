@@ -21,10 +21,22 @@ body {
 }
 
 .no-scrollbar {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .no-scrollbar::-webkit-scrollbar {
-    display: none;
+  display: none;
+}
+
+/* for <a>; makes closest relative parent clickable as this link */
+.link-around {
+  &::after {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    content: '';
+    inset: 0;
+  }
 }

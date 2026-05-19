@@ -1,0 +1,37 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.galleryItem {
+  position: relative;
+  height: 220px;
+
+  /* overflow: hidden; */
+  cursor: pointer;
+  
+}
+
+.galleryImage {
+  transition: transform 0.35s ease;
+
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.galleryItem:hover .galleryImage {
+  transform: scale(1.08);
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}

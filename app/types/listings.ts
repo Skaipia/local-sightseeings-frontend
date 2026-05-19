@@ -6,6 +6,7 @@ interface IListingResponse {
 }
 
 interface ISight {
+    id: string;
     title: string;
     description: string;
     imageUrl: string;
