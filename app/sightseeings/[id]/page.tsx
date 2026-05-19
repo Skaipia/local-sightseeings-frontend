@@ -19,7 +19,9 @@ export default function SightseeingDetailPage() {
     new Promise<SightExtendedT | undefined>((res) => {
       setFetching(true);
       setTimeout(() => {
-        res(mockSightsList.find((sight) => sight.id === id));
+        // res(mockSightsList.find((sight) => sight.id === id));
+        //TODO mockSightsList[2] временное решение
+        res(mockSightsList.find((sight) => sight.id === id) || mockSightsList[2]);
       }, 2000);
     })
       .then((received) => {
@@ -133,4 +135,5 @@ export default function SightseeingDetailPage() {
       </section>
     </article>
   );
+
 }
