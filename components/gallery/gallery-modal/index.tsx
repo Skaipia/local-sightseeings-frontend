@@ -4,7 +4,7 @@ import s from "./styles.module.css"
 export const GalleryModal = () => {
   return (<div className={s.wrapper}>
     <div className={s.modal}>
-    <Image />
+    <Image src="" alt=""/>
     </div>
   </div>)
 }
