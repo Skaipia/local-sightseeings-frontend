@@ -6,6 +6,7 @@ import { mockSightsList } from '../_data';
 import { SectionContent } from './SectionContent';
 import { SectionId } from './constants';
 import { Loader } from '@/components/Loader';
+import Image from 'next/image';
 
 export default function SightseeingDetailPage() {
   const [active, setActive] = useState<SectionId>('info');
@@ -76,9 +77,11 @@ export default function SightseeingDetailPage() {
   return (
     <article className="min-h-screen bg-background">
       <section className="w-full">
-        <img
-          src="/images/place/hero.jpg"
-          alt="Дом-Музей В.И. Ленина"
+        <Image
+          src={data.imageUrl}
+          alt={data.title}
+          width={1600}
+          height={900}
           className="h-[407px] w-full object-cover object-[32%_50%] md:h-[360px] md:object-[50%_50%] lg:h-[620px]"
         />
       </section>
