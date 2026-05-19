@@ -68,7 +68,7 @@ export const mockSightsList: SightExtendedT[] = [
       { alt: 'Фото 9', url: '/test-sight-card.png' },
     ],
     map: {
-      center: [53.195878, 50.100193],
+      center: [54.312579, 48.382514],
       zoom: 9,
       places: [[54.312579, 48.382514]],
     },
