@@ -5,8 +5,7 @@ import s from "./styles.module.css"
 
 
 interface IGallery {
-  images: string[];
-}
+  images: { alt?: string; url: string }[];}
 
 export default function Gallery({ images }: IGallery) {
   return (
@@ -17,8 +16,8 @@ export default function Gallery({ images }: IGallery) {
           className={s.galleryItem}
         >
           <Image
-            src={image}
-            alt={`gallery-${index}`}
+            src={image.url}
+            alt={image.alt || `gallery-${index}`}
             fill
             className={s.galleryImage}
           />

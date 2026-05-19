@@ -5,14 +5,10 @@ import s from './styles.module.css'
 
 type Coordinates = [number, number];
 
-export interface Point {
-  coordinates: Coordinates;
-}
-
 interface YandexMapProps {
   center: Coordinates;
   zoom: number;
-  points: Point[];
+  points: Coordinates[];
 }
 
 export const YandexMap:FC<YandexMapProps> = ({ center, zoom, points }) => {
@@ -22,10 +18,10 @@ export const YandexMap:FC<YandexMapProps> = ({ center, zoom, points }) => {
         defaultState={{ center, zoom }}
         className={s.map}
       >
-        {points.map((point, idx) => (
+        {points.map((point) => (
           <Placemark
-            key={idx}
-            geometry={point.coordinates}
+            key={point.toString()}
+            geometry={point}
           />
         ))}
       </Map>

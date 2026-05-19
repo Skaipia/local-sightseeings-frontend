@@ -11,6 +11,7 @@ import { createPortal } from 'react-dom';
 import { CatalogFilterMenu, defaultFilter, Filter, useFilterForm } from '@/components/catalog-filter-menu';
 import { mockSightsList } from '@/app/sightseeings/_data';
 import { useDebounce } from '@/shared/hooks/useDebounce';
+import { CardsGrid } from '@/components/CardsGrid/index';
 
 const options: SortOption[] = [
   { value: 'popular', label: 'Популярности' },
@@ -107,17 +108,11 @@ export default function Home() {
                 <p>Попробуйте переформулировать или воспользуйтесь фильтрами.</p>
               </section>
             ) : (
-              <div className={s.content}>
+              <CardsGrid>
                 {sights.map((sight, index) => (
-                  <SightCard
-                    key={index}
-                    imageUrl={sight.imageUrl}
-                    sightName={sight.title}
-                    sightShortDescription={sight.description}
-                    sightLocation={sight.location}
-                  />
+                  <SightCard key={index} sight={sight} />
                 ))}
-              </div>
+              </CardsGrid>
             )}
           </div>
         </div>
