@@ -1,4 +1,9 @@
 import { SightExtendedT } from '@/app/types/sight';
+import { mockMogutovaMountaint } from '@/app/mocks/mockMogutovaMountain';
+import { mockBogatyrskayaSloboda } from '@/app/mocks/mockBogatyrskayaSloboda';
+import { mockPredannosti } from '@/app/mocks/mockPredannosti';
+import { mockPeschera } from '@/app/mocks/mockPeschera';
+import { mockPloshchadSlavi } from '@/app/mocks/mockPloshchadSlavi';
 
 const mock1: SightExtendedT = {
   id: '2',
@@ -9,16 +14,13 @@ const mock1: SightExtendedT = {
 };
 
 export const mockSightsList: SightExtendedT[] = [
+  mockMogutovaMountaint,
+  mockBogatyrskayaSloboda,
+  mockPredannosti,
+  mockPeschera,
+  mockPloshchadSlavi,
   {
-    id: '1',
-    imageUrl: '/test-sight-card.png',
-    title: 'Памятник Преданности',
-    description: 'Пес Верный ждал хозяина 7 лет на остановке',
-    location: 'Тольятти',
-  },
-  mock1,
-  {
-    id: '3',
+    id: '6',
     imageUrl: '/test-sight-card.png',
     title: 'Дом-Музей В. И. Ленина',
     description: 'Здесь зародилась идея Откябрьской революции 1917',
