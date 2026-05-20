@@ -29,6 +29,8 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
     legends = [],
   } = sight;
 
+
+  // TODO: Ивенты будут браться с бэкенда, убрать хардкод
   if (active === 'info') {
     return (
       <div className="max-w-[680px] text-[14px] leading-[1.45] text-[#171717] md:text-[18px]">
@@ -41,22 +43,23 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
             <InfoIcon type="clock" />
             <span>{openingHours}</span>
           </p>
-          <p className="flex items-center gap-5">
+          { phoneNumber && <p className="flex items-center gap-5">
             <InfoIcon type="phone" />
             <a href={`tel:${phoneNumber}`} className="hover:underline">
               {phoneNumber}
             </a>
-          </p>
-          <p className="flex items-center gap-5">
+          </p> }
+          { website && <p className="flex items-center gap-5">
             <InfoIcon type="web" />
             <a href={website} target="_blank" rel="noopener noreferrer" className="hover:underline">
               {website}
             </a>
           </p>
+          }
         </div>
-        <p className="mb-6">
-          <strong>Что проходит:</strong> экскурсии, выставки.
-        </p>
+        {/*<p className="mb-6">*/}
+        {/*  <strong>Что проходит:</strong> экскурсии, выставки.*/}
+        {/*</p>*/}
         <p>
           <strong>Стоимость:</strong> {price || 'уточнять на официальном сайте.'}
         </p>
@@ -72,10 +75,12 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
       </ul>
     );
   }
+
+  // TODO: Цитата должна быть в ответе с бэкенда, не хардкод
   if (active === 'history') {
     return (
       <div className="max-w-[720px] text-[14px] leading-[1.35] text-[#171717] md:text-[18px]">
-        <p className="mx-auto mb-10 max-w-[360px] text-center">«Ульянов родился в Симбирске, а Ленин — в Самаре»</p>
+        {/*<p className="mx-auto mb-10 max-w-[360px] text-center">«Ульянов родился в Симбирске, а Ленин — в Самаре»</p>*/}
         <div className="space-y-5">
           {historyParagraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
@@ -94,26 +99,36 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
     );
   }
 
+  // TODO: Поменять заглушки
+  // TODO: Разобраться со способом вставки видео
   if (active === 'videos') {
     return (
       <div className="space-y-9">
         {sight.videos?.map(({ part, url }) => (
           <article className="w-full" key={`${part}${url}`}>
             <h3 className="mb-4 text-[14px] font-normal text-[#171717] md:text-[16px]">{part}</h3>
-            <div className="relative aspect-video w-full max-w-[680px] overflow-hidden bg-[#d8d3c8]">
-              <img
-                src="/images/place/video-page.jpg"
-                alt="Видео-экскурсия по дому-музею Ленина"
-                className="h-full w-full object-cover object-[50%_45%]"
-              />
-              <video src={url} autoPlay poster="posterimage.jpg">
-                Sorry, your browser doesn&apos;t support embedded videos, but don&apos;t worry, you can
-                <a href={url}>download it</a>
-                and watch it with your favorite video player!
-              </video>
-            </div>
+        {/*    <div className="relative aspect-video w-full max-w-[680px] overflow-hidden bg-[#d8d3c8]">*/}
+        {/*      <img*/}
+        {/*        src="/images/place/video-page.jpg"*/}
+        {/*        alt="Видео-экскурсия по дому-музею Ленина"*/}
+        {/*        className="h-full w-full object-cover object-[50%_45%]"*/}
+        {/*      />*/}
+        {/*      <video src={url} autoPlay poster="posterimage.jpg">*/}
+        {/*        Sorry, your browser doesn&apos;t support embedded videos, but don&apos;t worry, you can*/}
+        {/*        <a href={url}>download it</a>*/}
+        {/*        and watch it with your favorite video player!*/}
+        {/*      </video>*/}
+        {/*    </div>*/}
+            <iframe
+              width="720"
+              height="405"
+              src="https://rutube.ru/play/embed/756a86d75816b1da427886a10a22ae86"
+              allow="clipboard-write; autoplay"
+              allowFullScreen
+            ></iframe>
           </article>
         ))}
+
       </div>
     );
   }
