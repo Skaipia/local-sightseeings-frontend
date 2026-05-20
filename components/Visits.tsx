@@ -32,7 +32,7 @@ const visitItems = [
     {
         id: 5,
         title: 'Памятник В. Н. Татищеву',
-        image: '/images/visits/glory-square.jpg',
+        image: '/images/visits/glory-square.png',
         href: '/sightseeings/glory-square',
         className: 'object-[44%_48%]',
     },

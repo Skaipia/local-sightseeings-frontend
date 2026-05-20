@@ -2,7 +2,7 @@ import { SightExtendedT } from '@/app/types/sight';
 
 export const mockPloshchadSlavi: SightExtendedT = {
   id: 'glory-square',
-  imageUrl: '/images/visits/glory-square.jpg',
+  imageUrl: '/images/visits/glory-square.png',
   title: 'Памятник В. Н. Татищеву',
   description: 'Памятник Василию Никитичу Татищеву — основателю города Ставрополь-на-Волге, главный исторический символ города.',
   location: 'г. Тольятти',
