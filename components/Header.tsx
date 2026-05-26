@@ -16,8 +16,8 @@ export default function Header() {
     const navLinks = [
         {href: '/', label: 'Главная'},
         {href: '/sightseeings', label: 'Достопримечательности'},
-        {href: '/routes', label: 'Маршруты'},
-        {href: '/about', label: 'О проекте'},
+        // {href: '/routes', label: 'Маршруты'},
+        // {href: '/about', label: 'О проекте'},
     ];
 
     return (
@@ -43,9 +43,9 @@ export default function Header() {
                         </nav>
 
                         <div className="flex items-center">
-                            <button className="hidden md:block p-1 hover:opacity-60 transition-opacity">
-                                <img src="/images/icon-search.svg" alt="Search" className="w-6 h-6"/>
-                            </button>
+                            {/*<button className="hidden md:block p-1 hover:opacity-60 transition-opacity">*/}
+                            {/*    <img src="/images/icon-search.svg" alt="Search" className="w-6 h-6"/>*/}
+                            {/*</button>*/}
                             <button
                                 className="md:hidden flex flex-col justify-center items-end space-y-1 w-8 h-8 relative z-[60]"
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
