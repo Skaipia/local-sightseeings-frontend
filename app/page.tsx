@@ -13,7 +13,7 @@ export default function Home() {
             <Food/>
             <Visits/>
             <main>
-                <Routes/>
+                {/*<Routes/>*/}
                 <FAQ/>
             </main>
         </div>

@@ -25,14 +25,14 @@ export default function Footer() {
                                   className="text-[12px] md:text-[14px] text-gray-800 hover:text-black transition-colors">
                                 Достопримечательности
                             </Link>
-                            <Link href="/routes"
-                                  className="text-[12px] md:text-[14px] text-gray-800 hover:text-black transition-colors">
-                                Маршруты
-                            </Link>
-                            <Link href="/about"
-                                  className="text-[12px] md:text-[14px] text-gray-800 hover:text-black transition-colors">
-                                О проекте
-                            </Link>
+                            {/*<Link href="/routes"*/}
+                            {/*      className="text-[12px] md:text-[14px] text-gray-800 hover:text-black transition-colors">*/}
+                            {/*    Маршруты*/}
+                            {/*</Link>*/}
+                            {/*<Link href="/about"*/}
+                            {/*      className="text-[12px] md:text-[14px] text-gray-800 hover:text-black transition-colors">*/}
+                            {/*    О проекте*/}
+                            {/*</Link>*/}
                         </nav>
 
                         <div className="flex flex-col space-y-4">
