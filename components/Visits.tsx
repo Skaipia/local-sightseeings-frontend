@@ -1,10 +1,19 @@
 import Link from 'next/link';
 
+// TODO: при подключении бэкенда заменить visitItems на данные из ISightsResponse:
+//   interface ISightsResponse { list: ISight[] }
+//   где ISight: { id: string; title: string; imageUrl: string }
+// Текущие поля не соответствуют контракту:
+//   - id должен быть string (сейчас number)
+//   - поле image должно называться imageUrl
+//   - href и className — не часть контракта, формировать из id на уровне компонента
+//   - URL （href） страницы объекта должен собираться динамически из id
+//  - Добавить поддержку img как урл
 const visitItems = [
     {
-        id: 1,
+        id: 1, // TODO: id должен быть string согласно контракту ISight
         title: 'гора Могутовая',
-        image: '/images/visits/mountain.jpg',
+        image: '/images/visits/mountain.jpg', // TODO: переименовать в imageUrl согласно контракту ISight
         href: '/sightseeings/mountain',
         className: 'object-[48%_52%]',
     },

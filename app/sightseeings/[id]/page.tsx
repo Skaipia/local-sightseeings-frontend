@@ -1,4 +1,7 @@
 'use client';
+// TODO: если перевести fetch на серверный компонент (убрать 'use client'), можно удалить
+// useEffect/useState для data и fetching — Next.js App Router поддерживает async page компоненты.
+// 'use client' тогда останется только у интерактивных частей (навигация по секциям).
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { SightExtendedT } from '@/app/types/sight';
@@ -10,17 +13,25 @@ import Image from 'next/image';
 
 export default function SightseeingDetailPage() {
   const [active, setActive] = useState<SectionId>('info');
+
+  // TODO: деструктурировать сразу с типом: const { id } = useParams<{ id: string }>()
+  // Так id сразу будет string, а не string | string[], и промежуточная переменная params не нужна.
   const params = useParams();
   const id = params.id;
+
   const [data, setData] = useState<SightExtendedT>();
   const [fetching, setFetching] = useState(false);
+
   useEffect(() => {
-    // TODO fetch
+ 
+    // TODO: если оставляем на клиенте, то fetch-логику лучше вынести в кастомный хук useSightDetail(id) —
+    // компонент не должен знать о деталях получения данных.
+    
     new Promise<SightExtendedT | undefined>((res) => {
       setFetching(true);
       setTimeout(() => {
-        // res(mockSightsList.find((sight) => sight.id === id));
-        //TODO mockSightsList[2] временное решение
+        // TODO: при подключении бэкенда заменить на реальный fetch по id из IRequest { id: string }
+        // TODO: убрать фолбек на mockSightsList[2] — при отсутствии объекта показывать страницу 404
         res(mockSightsList.find((sight) => sight.id === id) || mockSightsList[2]);
       }, 2000);
     })
@@ -32,11 +43,21 @@ export default function SightseeingDetailPage() {
       });
   }, [id]);
 
+  // TODO: заменить императивный список с push на декларативный фильтр константного конфига:
+  //   const SECTION_CONFIG: Array<{ id: SectionId; label: string; show: (d: SightExtendedT) => boolean }> = [
+  //     { id: 'info',        label: 'Общая информация', show: () => true },
+  //     { id: 'facts',       label: 'Факты',            show: (d) => !!d.facts?.length },
+  //     { id: 'history',     label: 'История',          show: (d) => !!d.historyParagraphs?.length },
+  //     ...
+  //   ];
+  //   const sections = useMemo(() => SECTION_CONFIG.filter((s) => s.show(data)), [data]);
+  // Конфиг вынести в constants.ts — компонент тогда станет на ~25 строк короче.
   const sections = useMemo(() => {
     const list: Array<{ id: SectionId; label: string }> = [{ id: 'info', label: 'Общая информация' }];
     if (data?.facts?.length) {
       list.push({ id: 'facts', label: 'Факты' });
     }
+    // TODO: после перехода на ICardResponse заменить historyParagraphs на history?.items
     if (data?.historyParagraphs?.length) {
       list.push({ id: 'history', label: 'История' });
     }
@@ -64,6 +85,8 @@ export default function SightseeingDetailPage() {
     return list;
   }, [data]);
 
+  // TODO: в Next.js App Router состояние загрузки вроде можно вынести в файл loading.tsx рядом с page.tsx —
+  // фреймворк подхватит его автоматически и уберёт необходимость в ручном if (fetching).
   if (fetching) {
     return (
       <article className="bg-background flex min-h-[70vh]">
@@ -72,6 +95,7 @@ export default function SightseeingDetailPage() {
     );
   }
 
+  // TODO: вместо return null возможно стоит показать 404-страницу
   if (!data) {
     return null;
   }
@@ -91,6 +115,9 @@ export default function SightseeingDetailPage() {
         <h1 className="mb-8 max-w-[1060px] text-[28px] font-semibold leading-[1.15] text-[#0B1215] md:mb-12 md:text-[54px] lg:text-[64px]">
           {data.title}
         </h1>
+        {/* TODO: кнопки навигации продублированы в десктопном и мобильном блоках.
+            Можно вынести в отдельный компонент NavButton({ section, isActive, onClick })
+            и переиспользовать в обоих местах. */}
         <div className="hidden grid-cols-[260px_minmax(0,1fr)] gap-20 md:grid lg:grid-cols-[300px_minmax(0,1fr)]">
           <nav className="flex flex-col items-start gap-7">
             {sections.map((section) => (
@@ -125,6 +152,11 @@ export default function SightseeingDetailPage() {
                 </button>
                 {active === section.id && (
                   <div className="mt-5">
+                    {/* TODO: SectionContent сейчас рендерится отдельно в десктопе и мобайле.
+                        На мобилках он рендерится внутри каждого section.map — при смене active
+                        предыдущий контент размонтируется, а новый монтируется заново.
+                        Можно вынести один <SectionContent> ниже списка и управлять видимостью через CSS,
+                        чтобы избежать лишних mount/unmount. */}
                     <SectionContent active={active} sight={data} />
                   </div>
                 )}
@@ -135,5 +167,4 @@ export default function SightseeingDetailPage() {
       </section>
     </article>
   );
-
 }

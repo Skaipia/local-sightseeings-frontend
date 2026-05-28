@@ -1,5 +1,10 @@
 import { FilterItem } from '@/components/catalog-filter';
 
+// TODO: FilterItem использует поле id, но контракт IOptions требует поле key.
+// При подключении бэкенда данные фильтров будут приходить в формате { key: string; label: string }.
+// Нужно переименовать FilterItem.id → FilterItem.key и обновить все компоненты, которые
+// читают item.id (CatalogFilter) и хранят выбранные значения (useFilterForm / CatalogFilterMenu).
+// Значения в фильтр-реквесте должны быть key-ами опций, не порядковыми числами.
 export const locationOptions: FilterItem[] = [
   { id: '1', label: 'Все' },
   { id: '2', label: 'Тольятти' },

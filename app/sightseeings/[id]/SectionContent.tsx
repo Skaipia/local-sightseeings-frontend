@@ -1,3 +1,6 @@
+// TODO: компонент делает слишком много — рендерит 10 разных секций в одном месте.
+// Каждую секцию вынести в отдельный компонент: InfoSection, FactsSection, HistorySection и т.д.
+// SectionContent тогда превращается в роутер: switch(active) или map компонентов SECTION_MAP[active].
 import { FC } from 'react';
 import { SightExtendedT } from '@/app/types/sight';
 import { SectionId } from './constants';
@@ -13,28 +16,42 @@ export interface SectionContentProps {
 }
 
 export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
+  // TODO: после перехода на ICardResponse деструктурировать generalInfo:
+  //   const { generalInfo, facts, history, legends, videoTours, audioGuides, gallery, map } = sight;
+  //   const { address, openingHours, phone, website, events, price } = generalInfo;
+  // Также: phoneNumber → phone, historyParagraphs → history.items
   const {
-    location,
-    title,
+    location, // TODO: не используется в компоненте — убрать из деструктуризации или отобразить
+    title,    // TODO: не используется в компоненте — убрать из деструктуризации или отобразить
     address,
     openingHours,
-    phoneNumber,
+    phoneNumber, // TODO: переименовать в phone согласно контракту IGeneralInfo
     website,
-    imageUrl,
-    videos,
+    imageUrl, // TODO: не используется в компоненте — убрать из деструктуризации или отобразить
+    videos,   // TODO: заменить на videoTours?: string[] согласно контракту; ниже используется sight.videos напрямую — привести к единообразию
     gallery,
     facts = [],
-    historyParagraphs = [],
+    historyParagraphs = [], // TODO: заменить на history?.items согласно IHistoryBlock
     price,
     legends = [],
   } = sight;
 
+  // TODO: цепочка if/return — заменить на switch(active) или объект-роутер SECTION_MAP:
+  //   const SECTION_MAP: Record<SectionId, FC<{ sight: SightExtendedT }>> = {
+  //     info: InfoSection,
+  //     facts: FactsSection,
+  //     ...
+  //   };
+  //   const Section = SECTION_MAP[active];
+  //   return Section ? <Section sight={sight} /> : null;
 
-  // TODO: Ивенты будут браться с бэкенда, убрать хардкод
+  // TODO: добавить отображение поля events из IGeneralInfo — согласно контракту оно должно приходить с бэкенда
   if (active === 'info') {
     return (
       <div className="max-w-[680px] text-[14px] leading-[1.45] text-[#171717] md:text-[18px]">
         <div className="mb-10 space-y-6">
+          {/* TODO: address и openingHours рендерятся без проверки на undefined —
+              если данных нет, будет пустая строка с иконкой. Добавить guard: { address && <p>...</p> } */}
           <p className="flex items-center gap-5">
             <InfoIcon type="pin" />
             <span>{address}</span>
@@ -57,6 +74,7 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
           </p>
           }
         </div>
+        {/* TODO: Events реализовать по контракту */}
         {/*<p className="mb-6">*/}
         {/*  <strong>Что проходит:</strong> экскурсии, выставки.*/}
         {/*</p>*/}
@@ -76,10 +94,10 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
     );
   }
 
-  // TODO: Цитата должна быть в ответе с бэкенда, не хардкод
   if (active === 'history') {
     return (
       <div className="max-w-[720px] text-[14px] leading-[1.35] text-[#171717] md:text-[18px]">
+        {/* TODO: удалить закомментированный код — цитата должна браться из IHistoryBlock.quote */}
         {/*<p className="mx-auto mb-10 max-w-[360px] text-center">«Ульянов родился в Симбирске, а Ленин — в Самаре»</p>*/}
         <div className="space-y-5">
           {historyParagraphs.map((paragraph) => (
@@ -104,7 +122,10 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
   if (active === 'videos') {
     return (
       <div className="space-y-9">
+        {/* TODO: sight.videos используется напрямую, хотя videos уже деструктурирован выше — привести к единообразию */}
         {sight.videos?.map(({ part, url }) => (
+          // TODO: <article> семантически неверен для элемента списка видео —
+          // article подразумевает самостоятельный независимый контент. Заменить на <div>.
           <article className="w-full" key={`${part}${url}`}>
             <h3 className="mb-4 text-[14px] font-normal text-[#171717] md:text-[16px]">{part}</h3>
         {/*    <div className="relative aspect-video w-full max-w-[680px] overflow-hidden bg-[#d8d3c8]">*/}
@@ -119,6 +140,7 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
         {/*        and watch it with your favorite video player!*/}
         {/*      </video>*/}
         {/*    </div>*/}
+            {/* TODO: src захардкожен — игнорирует url из данных. Подставить url после решения вопроса с embed-форматом Rutube */}
             <iframe
               width="720"
               height="405"
@@ -136,6 +158,7 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
   if (active === 'audios') {
     return (
       <div className="space-y-9">
+        {/* TODO: sight.audios используется напрямую, хотя audios уже в деструктуризации — привести к единообразию */}
         {sight.audios?.map(({ part, url }) => (
           <div key={`${part}${url}`}>
             {part && <p className="text-[21px] mb-4 font-bold">{part}</p>}
@@ -145,6 +168,8 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
       </div>
     );
   }
+  
+  // TODO: разобраться с подгрузкой файлов - вставка через url с интернета не работает, пропускает только файлы из проекта
   if (active === 'gallery' && gallery) {
     return <Gallery images={gallery} />;
   }
@@ -152,6 +177,7 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
   if (active === 'map' && sight.map) {
     return <YandexMap center={sight.map.center} zoom={sight.map.zoom || 9} points={sight.map.places} />;
   }
+  
   if (active === 'sightPlaces' && sight.sightPlaces) {
     return (
       <CardsGrid>
@@ -173,7 +199,11 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
   return null;
 };
 
+// TODO: InfoIcon вынести в отдельный файл (например, components/icons/InfoIcon.tsx) —
+// вспомогательные компоненты после основного экспорта ухудшают читаемость файла.
 function InfoIcon({ type }: { type: 'pin' | 'clock' | 'phone' | 'web' }) {
+  // TODO: заменить цепочку if/return на объект-словарь path-данных и единый <svg> —
+  // вся логика сводится к подстановке разных <path>, структура SVG одинакова.
   const common = 'h-6 w-6 shrink-0 stroke-[#171717]';
   if (type === 'pin') {
     return (
