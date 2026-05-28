@@ -21,6 +21,10 @@ interface IPage {
 
 // Реквест листинга достопримечательностей
 
+// TODO: все поля кроме page должны быть опциональными согласно контракту:
+//   filters?: Record<ESightsFilter, string[]>
+//   searchQuery?: string;
+//   sortType?: ESortType;
 interface IRequest {
     filters: Record<ESightsFilter, string[]> // keys из IOption
     searchQuery: string;
@@ -33,6 +37,9 @@ enum ESortType {
     Rating = "rating"
 }
 
+// TODO: задублированный IPage конфликтует с первым — TypeScript мержит оба объявления,
+// из-за чего поле count (из респонса) ошибочно попадает в реквест-тип.
+// Нужно либо разделить на IPageRequest и IPageResponse, либо удалить этот дубль.
 interface IPage {
     offset: number;
     count: number;
@@ -68,6 +75,8 @@ interface IOptions {
 enum EFilterType {
     Checkbox = 'checkbox',
 }
+
+// TODO: все интерфейсы и енамы в этом файле не экспортированы
 
 // Респонс маршрутов
 

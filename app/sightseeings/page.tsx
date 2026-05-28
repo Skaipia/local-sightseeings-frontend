@@ -13,8 +13,9 @@ import { mockSightsList } from '@/app/sightseeings/_data';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { CardsGrid } from '@/components/CardsGrid/index';
 
+// TODO: Обсудили с Николаем, что сортировка пока будет дефолтная, без выбора, можно закомментить
 const options: SortOption[] = [
-  { value: 'popular', label: 'Популярности' },
+  { value: 'popular', label: 'Популярности' }, 
   { value: 'rating', label: 'Рейтингу' },
 ];
 
@@ -45,6 +46,7 @@ export default function Home() {
             one.location.toLowerCase().includes(searchStr)
           : true;
 
+        // TODO: убрать console.log перед релизом
         console.log(isFitBySearch, one);
         if (!isFitBySearch) {
           return false;
@@ -85,6 +87,7 @@ export default function Home() {
     closeMobileFilter();
   };
 
+ // TODO: заменить ниже key={index} на key={sight.id}
   return (
     <>
       <div className="container mx-auto px-8 pt-8 max-w-[1440px]">
