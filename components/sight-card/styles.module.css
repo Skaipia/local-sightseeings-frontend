@@ -35,7 +35,7 @@
 .image {
   margin-bottom: 6px;
   width: 100%;
-  height: auto;
+  height: 128px;
   object-fit: cover;
   grid-area: image;
 }
