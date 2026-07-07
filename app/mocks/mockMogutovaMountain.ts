@@ -8,7 +8,7 @@ export const mockMogutovaMountaint: SightExtendedT = {
   location: 'Жигулёвск',
   address: 'Самарская область, г. Жигулёвск, Могутовая гора',
   openingHours: 'Круглосуточно',
-  phoneNumber: undefined,
+  phone: undefined,
   website: undefined,
   price: 'Бесплатно',
   facts: [
@@ -35,7 +35,7 @@ export const mockMogutovaMountaint: SightExtendedT = {
     "С 1949 года на горе ведётся промышленная разработка доломитов для строительной индустрии. Карьер имеет размеры 1600×700 метров и частично открыт в сторону города.",
     "Несмотря на антропогенное воздействие, флора горы насчитывает около 600 видов, из которых 14 занесены в Красную книгу России. Среди них — эндемики, не встречающиеся больше нигде в мире, например молочай жигулёвский и тимьян жигулёвский.",
   ],
-  videos: [
+  videoTours: [
     { part: 'Часть 1', url: 'https://rutube.ru/video/2da46f86775ec5f6b9589377059dc359/' },
     { part: 'Часть 2', url: 'https://rutube.ru/video/2da46f86775ec5f6b9589377059dc359/' },
   ],

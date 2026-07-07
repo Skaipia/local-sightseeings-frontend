@@ -37,14 +37,14 @@ export type SightExtendedT = SightT & {
   facts?: string[];
   historyParagraphs?: string[]; // TODO: переименовать в history и изменить тип на IHistoryBlock согласно контракту
   legends?: string[];
-  videos?: { part: string; url: string }[]; // TODO: заменить на videoTours?: string[] согласно контракту
+  videoTours?: { part: string; url: string }[]; // TODO: заменить на videoTours?: string[] согласно контракту
   audios?: { part?: string; url: string }[]; // TODO: заменить на audioGuides?: string[] согласно контракту
   gallery?: { alt?: string; url: string }[]; // TODO: заменить на gallery?: string[] согласно контракту
   map?: { center: Coordinates; zoom?: number; places: Coordinates[] }; // TODO: заменить на IMapLocation { lat, lng } согласно контракту
   sightPlaces?: SightT[];
   nearby?: SightT[];
   address?: string; // TODO: перенести в generalInfo, сделать обязательным
-  phoneNumber?: string; // TODO: переименовать в phone и перенести в generalInfo согласно контракту
+  phone?: string; // TODO: переименовать в phone и перенести в generalInfo согласно контракту
   website?: string; // TODO: перенести в generalInfo согласно контракту
   // TODO: добавить поле events?: string в generalInfo согласно контракту
 };
