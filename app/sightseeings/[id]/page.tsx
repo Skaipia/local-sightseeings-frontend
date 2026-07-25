@@ -7,17 +7,14 @@ import { useParams } from 'next/navigation';
 import { SightExtendedT } from '@/app/types/sight';
 import { mockSightsList } from '../_data';
 import { SectionContent } from './SectionContent';
-import { SectionId } from './constants';
+import { SECTION_CONFIG, SectionId } from './constants';
 import { Loader } from '@/components/Loader';
 import Image from 'next/image';
 
 export default function SightseeingDetailPage() {
   const [active, setActive] = useState<SectionId>('info');
 
-  // TODO: деструктурировать сразу с типом: const { id } = useParams<{ id: string }>()
-  // Так id сразу будет string, а не string | string[], и промежуточная переменная params не нужна.
-  const params = useParams();
-  const id = params.id;
+  const { id } = useParams<{ id: string }>()
 
   const [data, setData] = useState<SightExtendedT>();
   const [fetching, setFetching] = useState(false);
@@ -31,8 +28,8 @@ export default function SightseeingDetailPage() {
       setFetching(true);
       setTimeout(() => {
         // TODO: при подключении бэкенда заменить на реальный fetch по id из IRequest { id: string }
-        // TODO: убрать фолбек на mockSightsList[2] — при отсутствии объекта показывать страницу 404
-        res(mockSightsList.find((sight) => sight.id === id) || mockSightsList[2]);
+        // TODO: при отсутствии объекта показывать страницу 404
+        res(mockSightsList.find((sight) => sight.id === id));
       }, 2000);
     })
       .then((received) => {
@@ -43,47 +40,10 @@ export default function SightseeingDetailPage() {
       });
   }, [id]);
 
-  // TODO: заменить императивный список с push на декларативный фильтр константного конфига:
-  //   const SECTION_CONFIG: Array<{ id: SectionId; label: string; show: (d: SightExtendedT) => boolean }> = [
-  //     { id: 'info',        label: 'Общая информация', show: () => true },
-  //     { id: 'facts',       label: 'Факты',            show: (d) => !!d.facts?.length },
-  //     { id: 'history',     label: 'История',          show: (d) => !!d.historyParagraphs?.length },
-  //     ...
-  //   ];
-  //   const sections = useMemo(() => SECTION_CONFIG.filter((s) => s.show(data)), [data]);
-  // Конфиг вынести в constants.ts — компонент тогда станет на ~25 строк короче.
-  const sections = useMemo(() => {
-    const list: Array<{ id: SectionId; label: string }> = [{ id: 'info', label: 'Общая информация' }];
-    if (data?.facts?.length) {
-      list.push({ id: 'facts', label: 'Факты' });
-    }
-    // TODO: после перехода на ICardResponse заменить historyParagraphs на history?.items
-    if (data?.historyParagraphs?.length) {
-      list.push({ id: 'history', label: 'История' });
-    }
-    if (data?.legends?.length) {
-      list.push({ id: 'legends', label: 'Легенды' });
-    }
-    if (data?.videos?.length) {
-      list.push({ id: 'videos', label: 'Видео-экскурсия' });
-    }
-    if (data?.audios?.length) {
-      list.push({ id: 'audios', label: 'Аудиогид' });
-    }
-    if (data?.gallery?.length) {
-      list.push({ id: 'gallery', label: 'Галерея' });
-    }
-    if (data?.map) {
-      list.push({ id: 'map', label: 'На карте' });
-    }
-    if (data?.sightPlaces?.length) {
-      list.push({ id: 'sightPlaces', label: 'Входит в маршрут' });
-    }
-    if (data?.nearby?.length) {
-      list.push({ id: 'nearby', label: 'Рядом' });
-    }
-    return list;
-  }, [data]);
+ const sections = useMemo(
+  () => data ? SECTION_CONFIG.filter((section) => section.show(data)) : [],
+  [data]
+);
 
   // TODO: в Next.js App Router состояние загрузки вроде можно вынести в файл loading.tsx рядом с page.tsx —
   // фреймворк подхватит его автоматически и уберёт необходимость в ручном if (fetching).

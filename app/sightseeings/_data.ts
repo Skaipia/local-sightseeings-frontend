@@ -27,7 +27,7 @@ export const mockSightsList: SightExtendedT[] = [
     location: 'Самара',
     address: 'ул. Ленина, д. 70',
     openingHours: 'ПН-ПТ с 9:00 до 18:30',
-    phoneNumber: '+7 (938) 401-03-56',
+    phone: '+7 (938) 401-03-56',
     website: 'https://leninmemorial.ru',
     price: undefined,
     facts: [
@@ -53,7 +53,7 @@ export const mockSightsList: SightExtendedT[] = [
       'Говорят, что в доме на Ленинской до сих пор легко представить жизнь старой Самары: шум лавки на первом этаже, скрип лестницы, разговоры жильцов и вечерний свет в окнах деревянного особняка.',
       'Для многих горожан это место стало не только музеем, но и символом памяти о городе конца XIX века, где рядом существовали купеческий быт, студенческие споры и семейные истории.',
     ],
-    videos: [
+    videoTours: [
       { part: 'Часть 1', url: 'https://rutube.ru/video/2da46f86775ec5f6b9589377059dc359/' },
       { part: 'Часть 2', url: 'https://rutube.ru/video/2da46f86775ec5f6b9589377059dc359/' },
     ],

@@ -19,16 +19,13 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
   // TODO: после перехода на ICardResponse деструктурировать generalInfo:
   //   const { generalInfo, facts, history, legends, videoTours, audioGuides, gallery, map } = sight;
   //   const { address, openingHours, phone, website, events, price } = generalInfo;
-  // Также: phoneNumber → phone, historyParagraphs → history.items
+  // Также: phone → phone, historyParagraphs → history.items
   const {
-    location, // TODO: не используется в компоненте — убрать из деструктуризации или отобразить
-    title,    // TODO: не используется в компоненте — убрать из деструктуризации или отобразить
     address,
     openingHours,
-    phoneNumber, // TODO: переименовать в phone согласно контракту IGeneralInfo
+    phone,
     website,
-    imageUrl, // TODO: не используется в компоненте — убрать из деструктуризации или отобразить
-    videos,   // TODO: заменить на videoTours?: string[] согласно контракту; ниже используется sight.videos напрямую — привести к единообразию
+    videoTours,
     gallery,
     facts = [],
     historyParagraphs = [], // TODO: заменить на history?.items согласно IHistoryBlock
@@ -60,10 +57,10 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
             <InfoIcon type="clock" />
             <span>{openingHours}</span>
           </p>
-          { phoneNumber && <p className="flex items-center gap-5">
+          { phone && <p className="flex items-center gap-5">
             <InfoIcon type="phone" />
-            <a href={`tel:${phoneNumber}`} className="hover:underline">
-              {phoneNumber}
+            <a href={`tel:${phone}`} className="hover:underline">
+              {phone}
             </a>
           </p> }
           { website && <p className="flex items-center gap-5">
@@ -97,8 +94,7 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
   if (active === 'history') {
     return (
       <div className="max-w-[720px] text-[14px] leading-[1.35] text-[#171717] md:text-[18px]">
-        {/* TODO: удалить закомментированный код — цитата должна браться из IHistoryBlock.quote */}
-        {/*<p className="mx-auto mb-10 max-w-[360px] text-center">«Ульянов родился в Симбирске, а Ленин — в Самаре»</p>*/}
+        {/* TODO цитата должна браться из IHistoryBlock.quote */}
         <div className="space-y-5">
           {historyParagraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
@@ -119,11 +115,10 @@ export const SectionContent: FC<SectionContentProps> = ({ active, sight }) => {
 
   // TODO: Поменять заглушки
   // TODO: Разобраться со способом вставки видео
-  if (active === 'videos') {
+  if (active === 'videoTours') {
     return (
       <div className="space-y-9">
-        {/* TODO: sight.videos используется напрямую, хотя videos уже деструктурирован выше — привести к единообразию */}
-        {sight.videos?.map(({ part, url }) => (
+        {videoTours?.map(({ part, url }) => (
           // TODO: <article> семантически неверен для элемента списка видео —
           // article подразумевает самостоятельный независимый контент. Заменить на <div>.
           <article className="w-full" key={`${part}${url}`}>

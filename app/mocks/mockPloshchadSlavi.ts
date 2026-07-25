@@ -8,7 +8,7 @@ export const mockPloshchadSlavi: SightExtendedT = {
   location: 'г. Тольятти',
   address: 'Самарская область, г. Тольятти, микрорайон Портовый, берег Куйбышевского водохранилища Памятник В. Н. Татищеву',
   openingHours: 'Круглосуточно',
-  phoneNumber: undefined,
+  phone: undefined,
   website: undefined,
   price: 'бесплатно',
   facts: [
@@ -32,7 +32,7 @@ export const mockPloshchadSlavi: SightExtendedT = {
     'На гранитном постаменте высечена надпись с именем Татищева и годами жизни (1686–1750).',
     'Памятник расположен на живописном берегу Куйбышевского водохранилища в Тольятти, рядом с историческим местом основания города. Это одна из самых популярных обзорных площадок, откуда открывается вид на Волгу и Жигулёвские горы.'
   ],
-  videos: [
+  videoTours: [
     { part: 'Часть 1', url: 'https://rutube.ru/video/756a86d75816b1da427886a10a22ae86/?r=plwd' },
   ],
   gallery: [

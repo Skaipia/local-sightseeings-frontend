@@ -8,7 +8,7 @@ export const mockBogatyrskayaSloboda: SightExtendedT = {
   location: 'Жигулёвск',
   address: 'Самарская область, Ставропольский район, село Жигули, 1',
   openingHours: 'Ежедневно с 10:00 до 19:00',
-  phoneNumber: '+7 (848) 462-30-10',
+  phone: '+7 (848) 462-30-10',
   website: 'https://bogatyrskaya-sloboda.ru',
   price: 'от 300 рублей',
   facts: [
