@@ -1,44 +1,39 @@
 import { FilterItem } from '@/components/catalog-filter';
 
-// TODO: FilterItem использует поле id, но контракт IOptions требует поле key.
-// При подключении бэкенда данные фильтров будут приходить в формате { key: string; label: string }.
-// Нужно переименовать FilterItem.id → FilterItem.key и обновить все компоненты, которые
-// читают item.id (CatalogFilter) и хранят выбранные значения (useFilterForm / CatalogFilterMenu).
-// Значения в фильтр-реквесте должны быть key-ами опций, не порядковыми числами.
 export const locationOptions: FilterItem[] = [
-  { id: '1', label: 'Все' },
-  { id: '2', label: 'Тольятти' },
-  { id: '3', label: 'Самара' },
-  { id: '4', label: 'Нефтегорск' },
-  { id: '5', label: 'Город1' },
-  { id: '6', label: 'Город2' },
+  { key: 'all', label: 'Все' },
+  { key: 'tolyatti', label: 'Тольятти' },
+  { key: 'samara', label: 'Самара' },
+  { key: 'neftegorsk', label: 'Нефтегорск' },
+  { key: 'city1', label: 'Город1' },
+  { key: 'city2', label: 'Город2' },
 ];
 
 export const categoryOptions: FilterItem[] = [
-  { id: '1', label: 'Все' },
-  { id: '2', label: 'Арки и ворота' },
-  { id: '3', label: 'Библиотеки' },
-  { id: '4', label: 'Водопады' },
-  { id: '5', label: 'Набережные' },
-  { id: '6', label: 'Скалы' },
+  { key: 'all', label: 'Все' },
+  { key: 'arches_and_gates', label: 'Арки и ворота' },
+  { key: 'libraries', label: 'Библиотеки' },
+  { key: 'waterfalls', label: 'Водопады' },
+  { key: 'embankments', label: 'Набережные' },
+  { key: 'cliffs', label: 'Скалы' },
 ];
 
 export const interestByOptions: FilterItem[] = [
-  { id: '1', label: 'Всем' },
-  { id: '2', label: 'Детям' },
-  { id: '3', label: 'Подросткам' },
-  { id: '4', label: 'Взрослым' },
-  { id: '5', label: 'Пенсионерам' },
+  { key: 'all', label: 'Всем' },
+  { key: 'children', label: 'Детям' },
+  { key: 'teenagers', label: 'Подросткам' },
+  { key: 'adults', label: 'Взрослым' },
+  { key: 'seniors', label: 'Пенсионерам' },
 ];
 
 export const openingHoursOptions: FilterItem[] = [
-  { id: '1', label: 'Все' },
-  { id: '2', label: 'Круглосуточно' },
-  { id: '3', label: 'Открыто' },
+  { key: 'all', label: 'Все' },
+  { key: '24_7', label: 'Круглосуточно' },
+  { key: 'open', label: 'Открыто' },
 ];
 
 export const priceOptions: FilterItem[] = [
-  { id: '1', label: 'Все' },
-  { id: '2', label: 'Платно' },
-  { id: '3', label: 'Бесплатно' },
+  { key: 'all', label: 'Все' },
+  { key: 'paid', label: 'Платно' },
+  { key: 'free', label: 'Бесплатно' },
 ];

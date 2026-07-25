@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import s from "./styles.module.css";
 
 export type FilterItem = {
-  id: string;
+  key: string;
   label: string;
 };
 
@@ -25,11 +25,11 @@ export const CatalogFilter: React.FC<Props> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleItem = (id:string) => {
-    if (selected.includes(id)) {
-      onChange(selected.filter((item) => item !== id));
+  const toggleItem = (key:string) => {
+    if (selected.includes(key)) {
+      onChange(selected.filter((item) => item !== key));
     } else {
-      onChange([...selected, id]);
+      onChange([...selected, key]);
     }
   };
 
@@ -42,14 +42,14 @@ export const CatalogFilter: React.FC<Props> = ({
       <div className={`${s.listWrapper} ${isOpen ? s.expanded : ""}`}>
         <div className={s.list}>
           {items.map((item) => {
-            const isChecked = selected.includes(item.id);
+            const isChecked = selected.includes(item.key);
 
             return (
-              <label key={item.id} className={s.item}>
+              <label key={item.key} className={s.item}>
                 <input
                   type="checkbox"
                   checked={isChecked}
-                  onChange={() => toggleItem(item.id)}
+                  onChange={() => toggleItem(item.key)}
                   className={s.input}
                 />
 

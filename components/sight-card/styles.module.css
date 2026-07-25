@@ -53,20 +53,6 @@
   }
 }
 
-/* TODO вынести text md и text lg в общие стили */
-
-.text-md {
-  font-size: 14px;
-  line-height: 120%;
-  color: #5d5d5d;
-}
-
-.text-lg {
-  font-size: 16px;
-  line-height: 120%;
-  color: #0b1215;
-}
-
 .location {
   grid-area: location;
 }
